@@ -95,7 +95,7 @@
                         <i class="card"></i>
                     </span>
                     <span class="optarea">
-                        <a href="useradd" class="add">
+                        <a href="permissionadd" class="add">
                             <i class="icon"></i>
                             <span class="text">添加</span>
                         </a>
@@ -139,24 +139,22 @@
         sortable: 'default',
         name: 'id'
     },{
-        label:'用户名',
+        label:'角色名称',
         width: 250,
         sortable: 'default',
         name:'name'
     },{
-        label:'邮箱',
+        label:'具体角色',
         width:250
     },{
-        label:'角色',
-        width:250
+        label: '描述',
+        width: 250
     }];
 
-    // var oper = [{label:'查看详情',width: 250,onclick:function(){
-    //         alert('查看详情');
-    //     }},{label:'删除',width: 250,onclick:function(){
-    //         location.href = 'userupdate'
-    //     }},{label:'编辑',width: 250,onclick: function(){
-    //         location.href = 'userupdate'
+    // var oper = [{label:'删除',onclick:function(){
+    //         alert('删除');
+    //     }},{label:'编辑',onclick: function(){
+    //         alert('编辑')
     //     }}]
     // var tbody = [
     //     ["201301","admin","熊猫王子","江苏南京","南京林业大学","1982-10-18","已审核",oper],
@@ -175,7 +173,7 @@
     //     ["201302","uimaker","小牛","山东济南","山东大学","1989-10-18","已审核",oper],
     //     ["201301","admin","熊猫王子","江苏南京","南京林业大学","1982-10-18","已审核",oper]]
 
-    tbody = eval(<?php echo $usershow ?>)
+    tbody = eval(<?php echo $roleshow ?>)
     $('.grid').Grid({
         thead: head,
         tbody: null,

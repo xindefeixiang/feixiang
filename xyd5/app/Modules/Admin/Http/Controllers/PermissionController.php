@@ -71,13 +71,6 @@ class PermissionController extends Controller{
         ]);
         var_dump($res);die;
     }
-//    protected function validateLogin(Request $request)
-//    {
-//        $this->validate($request, [
-//            $this->username() => 'required|string',
-//            'password' => 'required|string',
-//        ]);
-//    }
     // 执行权限添加
     public function createPermissionExec(){
         $data = Input::all();

@@ -67,11 +67,11 @@ return [
 //            'write' => [
 //                'host' => '196.168.1.2'
 //            ],
-            'host' => '118.25.138.97',
+            'host' => '101.132.114.75',
             'driver'    => 'mysql',
             'database'  => '1605',
             'username'  => 'root',
-            'password'  => '111111',
+            'password'  => 'root',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => 'teach_',
