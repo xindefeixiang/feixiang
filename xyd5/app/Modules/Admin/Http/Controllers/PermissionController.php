@@ -7,6 +7,7 @@
  */
 
 namespace App\Modules\Admin\Http\Controllers;
+use App\Modules\Admin\Entities\Model\Nav;
 use HuangYi\Rbac\Managers\PermissionManager;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -36,7 +37,9 @@ class PermissionController extends Controller{
      * 权限添加页面
      * */
     public function permissionadd(){
-        return view('admin::user.permissionadd');
+        $model = new Nav();
+        $pidnot = $model::all()->where("pid","!=","0")->toArray();
+        return view('admin::user.permissionadd',['typeid'=>$pidnot]);
     }
     /*
      * 权限数据添加
@@ -46,16 +49,28 @@ class PermissionController extends Controller{
             'name' => 'required',
             'slug' => 'required',
             'description' => 'required',
+            'typeid' => 'required|Integer',
         ],[
             'name.required' => '权限名不能为空懂吗',
             'slug.required' => '具体权限不能为空懂吗',
             'description.required' => '权限描述不能为空懂吗',
+            'typeid.required' => '分类必须得选',
+            'typeid.Integer' => '有误',
         ]);
-        $model = new Permission();
-        $model->name = $request->name;
-        $model->slug = $request->slug;
-        $model->description = $request->description;
-        $res = $model->save();
+        $typeid = $request->typeid;
+        if ($typeid == 0){
+            $model = new Nav();
+            $model->name = $request->name;
+            $model->pid = 4;
+            $res = $model->save();
+        }else{
+            $model = new Permission();
+            $model->name = $request->name;
+            $model->slug = $request->slug;
+            $model->description = $request->description;
+            $model->pid = $typeid;
+            $res = $model->save();
+        }
         if ($res){
             return redirect('permissionlist');
         }else{
