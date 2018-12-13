@@ -28,6 +28,7 @@ class Rbac
         //截取方法
         $action = substr($res['controller'],strpos($res['controller'],'@')+1);
         //权限判断
+//        echo $controller.'.'.$action;die;
         $arr = User::find($user_id);
         $res = $arr->hasPermission($controller.'.'.$action);
         if ($res){
