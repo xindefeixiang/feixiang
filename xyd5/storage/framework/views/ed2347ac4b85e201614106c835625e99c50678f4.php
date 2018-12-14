@@ -52,7 +52,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                     <input class="btn" type="submit" value="提交" />
                     <input class="btn" type="reset" value="重置" />
                 </td>
@@ -61,5 +61,5 @@
     </form>
 </div>
 </body>
-<script type="text/javascript" src="{{asset('admin/js/jQuery1.7.js') }}"></script>
+<script type="text/javascript" src="<?php echo e(asset('admin/js/jQuery1.7.js')); ?>"></script>
 </html>

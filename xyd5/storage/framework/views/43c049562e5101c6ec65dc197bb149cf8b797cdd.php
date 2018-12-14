@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../admin/css/WdatePicker.css" />
     <link rel="stylesheet" type="text/css" href="../../admin/css/skin_/form.css" />
-    <link href="{{asset('admin/umeditor/themes/default/_css/umeditor.css')}}" type="text/css" rel="stylesheet">
+    <link href="<?php echo e(asset('admin/umeditor/themes/default/_css/umeditor.css')); ?>" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="../../admin/js/jquery.js"></script>
     <script type="text/javascript" src="../../admin/js/global.js"></script>
     <script type="text/javascript" src="../../admin/js/jquery.select.js"></script>
@@ -15,25 +15,26 @@
         window.UMEDITOR_HOME_URL = '../../admin/umeditor/';  // 请换成绝对路径
     </script>
     <script type="text/javascript" src="../../admin/js/umeditor.config.js"></script>
-    <script type="text/javascript" src="{{asset('admin/js/editor_api.js')}}"></script>
+    <script type="text/javascript" src="<?php echo e(asset('admin/js/editor_api.js')); ?>"></script>
     <script type="text/javascript" src="../../admin/umeditor/lang/zh-cn/zh-cn.js"></script>
     <title>基础信息</title>
 </head>
 
 <body>
 <div style="position: absolute;top: 10%;left: 50%;color: red;font-family: 楷体;font-weight: bolder;line-height: 30px">
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <font color="red" style="font-family: 幼圆">{{ $error }}</font><br>
-        @endforeach
-    @endif
+    <?php if($errors->any()): ?>
+        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <font color="red" style="font-family: 幼圆"><?php echo e($error); ?></font><br>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php endif; ?>
 </div>
 <div id="container">
     <div id="hd">
     </div>
     <div id="bd">
         <form action="useradddata" method="post">
-            {{ csrf_field() }}
+            <?php echo e(csrf_field()); ?>
+
         <div id="main">
             <h2 class="subfild">
                 <span>用户信息</span>

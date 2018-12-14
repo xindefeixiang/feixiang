@@ -13,6 +13,9 @@ use App\Modules\Admin\Model\Argan;
 use App\Modules\Admin\Model\Users;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
+
 class StudentController extends Controller{
 
     //跳转到添加页面
@@ -55,9 +58,9 @@ class StudentController extends Controller{
         $user = new Users();
         $data = $student->show();
         foreach($data['data'] as $k=>$v){
-            $a = $argan::where('id',$v['argan_id'])->first()->toArray();
-            $b = $class::where('id',$v['class_id'])->first()->toArray();
-            $c = $user::where('id',$v['user_id'])->first()->toArray();
+            $a = $argan::where('id',$v['argan_id'])->first();
+            $b = $class::where('id',$v['class_id'])->first();
+            $c = $user::where('id',$v['user_id'])->first();
             $data['data'][$k]['argan_name'] = $a['name'];
             $data['data'][$k]['class_name'] = $b['name'];
             $data['data'][$k]['user_name'] = $c['name'];
@@ -115,4 +118,37 @@ class StudentController extends Controller{
             return redirect('/admin/studentshow');
         }
     }
+    public function execel(){
+        return view('admin::student.execel');
+    }
+    public function import(Request $request){
+        if(!$request->hasFile('file')){
+            exit('上传文件为空！');
+         }
+            $file=$_FILES;
+            $excel_file_path=$file['file']['tmp_name'];
+            $res =[];
+            Excel::load($excel_file_path,function($reader)use(&$res){
+            $reader=$reader->getSheet(0);
+            $res=$reader->toArray();
+            //print_r($res);die;
+            });
+            for($i=1;$i<count($res);$i++){
+            $check=Student::where('student_name',$res[$i][3])->count();
+            if($check){
+            continue;
+            }
+            $stu=new Student();
+            $stu->user_id=$res[$i][0];
+            $stu->argan_id=$res[$i][1];
+            $stu->class_id=$res[$i][2];
+            $stu->student_name=$res[$i][3];
+            $stu->student_sex=$res[$i][4];
+            $stu->student_age=$res[$i][5];
+            $stu->student_img=$res[$i][6];
+            $stu->room_id=$res[$i][7];
+            $stu->save();
+            }
+             return redirect::to('/admin/studentshow')->withSuccess("导入成功");
+            }
 }

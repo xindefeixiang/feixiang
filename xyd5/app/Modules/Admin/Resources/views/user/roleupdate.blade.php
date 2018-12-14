@@ -32,7 +32,7 @@
     <div id="hd">
     </div>
     <div id="bd">
-        <form action="userupdatedata" method="post">
+        <form action="roleupdatedata" method="post">
             {{ csrf_field() }}
         <div id="main">
             <h2 class="subfild">
@@ -43,7 +43,7 @@
                     <label><span class="impInfo">*</span>角色名称</label>
                     <div class="kv-item-content">
                         {{$role['name']}}
-                        <input type="hidden" name="userid" value="{{$role['id']}}">
+                        <input type="hidden" name="roleid" value="{{$role['id']}}">
                     </div>
                     <span class="kv-item-tip">用户角色</span>
                 </div>

@@ -35,7 +35,16 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'App\\M
     Route::post('permissionadddata','PermissionController@permissionadddata');
     Route::post('createPermissionExec','PermissionController@createPermissionExec');
     Route::get('userlist','UserController@userlist');
-	
+    Route::get('useradd','UserController@useradd');
+    Route::get('userupdate','UserController@userupdate');
+    Route::post('userupdatedata','UserController@userupdatedata');
+    Route::post('useradddata','PermissionController@useradddata');
+    Route::get('rolelist','RoleController@rolelist');
+    Route::get('roleupdate','RoleController@roleupdate');
+    Route::post('roleupdatedata','RoleController@roleupdatedata');
+
+    /*导航管理*/
+    Route::get('navlist','NavController@navlist');
 	 //课程管理
     Route::get('class-list','ClassController@list');
     Route::any('class-add','ClassController@add');
@@ -59,13 +68,13 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'App\\M
     Route::any('log','MainController@log');
 	
 	//机构管理
-    Route::get('arganceshi','ArganController@ArganCeshi');
-    Route::get('arganmove','ArganController@ArganMove');
-    Route::any('arganin','ArganController@ArganIn');
-    Route::get('arganshow','ArganController@ArganShow');
-    Route::get('arganup','ArganController@ArganUp');
-    Route::any('arganupdate','ArganController@ArganUpdate');
-    Route::get('argandel','ArganController@ArganDel');
+    Route::get('arganceshi','ArganController@ArganCeshi'); //添加页面
+    Route::get('arganmove','ArganController@ArganMove'); //联动
+    Route::any('arganin','ArganController@ArganIn'); //添加数据
+    Route::get('arganshow','ArganController@ArganShow'); //展示
+    Route::get('arganup','ArganController@ArganUp'); //修改
+    Route::any('arganupdate','ArganController@ArganUpdate'); //修改数据
+    Route::get('argandel','ArganController@ArganDel'); //删除
 
 
     //讲师管理
@@ -91,4 +100,21 @@ Route::group(['middleware' => 'web', 'prefix' => 'admin', 'namespace' => 'App\\M
     Route::get('advertsup','AdvertsController@AdvertsUp');
     Route::any('advertsupdate','AdvertsController@AdvertsUpdate');
     Route::get('advertsdel','AdvertsController@AdvertsDel');
+    //线下课程管理
+    Route::get('sclassadd','SclassController@SclassAdd');
+    Route::any('sclassin','SclassController@SclassIn');
+    Route::get('sclassshow','SclassController@SclassShow');
+    Route::get('sclassup','SclassController@SclassUp');
+    Route::any('sclassupdate','SclassController@SclassUpdate');
+    Route::get('sclassdel','SclassController@SclassDel');
+    Route::any('Paperadd','PaperController@Paperadd');//试卷添加
+    Route::any('Paperlist','PaperController@Paperlist');//试卷列表
+
+    Route::any('roomAdd','RoomController@roomAdd');//班级添加
+    Route::any('roomList','RoomController@roomList');//班级列表
+
+
+
+    Route::any('Cut','CutController@index');//分班管理
+    Route::any('Cutdo','CutController@cutdo');//分班
 });

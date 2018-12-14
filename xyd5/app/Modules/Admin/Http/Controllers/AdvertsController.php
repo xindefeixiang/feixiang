@@ -13,7 +13,7 @@ use Illuminate\Routing\Controller;
 class AdvertsController extends Controller{
     //跳转到添加页面
     public function AdvertsAdd(){
-        $adverts = new Adverts();
+        $adverts = new Advert_types();
         $data = $adverts->advert_types();
         return view('admin::adverts.add',['adverts'=>$data]);
     }
@@ -56,7 +56,8 @@ class AdvertsController extends Controller{
         $data = $adverts->up($id);
         $res = $advert_types->advert_types();
         $advert_type_name = $advert_types::where('id',$data['advert_type_id'])->first()->toArray();
-        $data['advert_type_name'] = $advert_type_name['name'];
+        //print_r($data);die;
+        $data['advert_type_name'] = $advert_type_name['advert_type_name'];
         return view('admin::adverts.up',['data'=>$data,'advert_type_name'=>$res]);
     }
 

@@ -19,7 +19,7 @@
             <h1 class="logo"><image src="../../admin/img/skin_/xuanyuandi.png" style="width:212px;height:49px;"></image><a href="javascript:;" class="logo-icon"></a></h1>
             <div class="user-info">
                 <a href="javascript:;" class="user-avatar"><span><i class="info-num">2</i></span></a>
-                <span class="user-name">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                <span class="user-name"><?php echo e(\Illuminate\Support\Facades\Auth::user()->name); ?></span>
                 <a href="javascript:;" class="more-info"></a>
             </div>
             <div class="setting ue-clear">
@@ -41,23 +41,23 @@
         <div class="hd-bottom">
             <i class="home"><a href="javascript:;"></a></i>
             <div class="nav-wrap">
-                {{--<ul class="nav ue-clear">--}}
-                    {{--<li><a href="javascript:;">平台管理</a></li>--}}
-                    {{--<li><a href="javascript:;">系统管理</a></li>--}}
-                    {{--<li><a href="javascript:;">安全管理</a></li>--}}
-                    {{--<li><a href="javascript:;">数据中心</a></li>--}}
-                    {{--<li><a href="javascript:;">表单管理</a></li>--}}
-                    {{--<li><a href="javascript:;">流程管理</a></li>--}}
-                    {{--<li><a href="javascript:;">交流中心</a></li>--}}
-                    {{--<li><a href="javascript:;">企业邮箱</a></li>--}}
-                    {{--<li><a href="javascript:;">个人设置</a></li>--}}
-                    {{--<li><a href="javascript:;">交流中心</a></li>--}}
-                    {{--<li><a href="javascript:;">企业邮箱</a></li>--}}
-                    {{--<li><a href="javascript:;">个人设置</a></li>--}}
-                    {{--<li><a href="javascript:;">交流中心</a></li>--}}
-                    {{--<li><a href="javascript:;">企业邮箱</a></li>--}}
-                    {{--<li><a href="javascript:;">个人设置</a></li>--}}
-                {{--</ul>--}}
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                
             </div>
             <div class="nav-btn">
                 <a href="javascript:;" class="nav-prev-btn"></a>

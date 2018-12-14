@@ -19,56 +19,71 @@
             <i class="sidebar-hide"></i>
             <h2><a href="javascript:;"><i class="h2-icon" title="切换到树型结构"></i><span>安全管理</span></a></h2>
             <ul class="nav">
-                <li class="nav-li">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">用户权限管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li" data-id="4"  href="permissionlist" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">权限列表</span></a></li>
-                        <li class="subnav-li" data-id="5"  href="userlist" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">用户列表</span></a></li>
-                        <li class="subnav-li" data-id="6" href="table.html" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">角色列表</span></a></li>
-                    </ul>
-                </li>
-                 <li class="nav-li current">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">用户信息管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li current" data-id="1"  href="index" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a></li>
-                        <li class="subnav-li" data-id="2" href="form" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表单</span></a></li>
-                        <li class="subnav-li" data-id="3" href="table" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表格</span></a></li>
-                        <li class="subnav-li" data-id="4" href="information" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">编写个人信息</span></a></li>
-                        <li class="subnav-li" data-id="5" href="informationshow" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">我的个人信息</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-li">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">培训机构管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li" data-id="20" href="arganceshi" ><a href="#" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">机构管理</span></a></li>
-                        <li class="subnav-li" data-id="7" href="teacheradd"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">讲师管理</span></a></li>
-                        <li class="subnav-li" data-id="8" href="studentadd"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">学生管理</span></a></li>
-                    </ul>
-                </li>
-                 <li class="nav-li last-nav-li">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">在线课程管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li" data-id="14" href="class-list"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">课程列表</span></a></li>
-                        <li class="subnav-li" data-id="15"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">缓存清理</span></a></li>
-                        <li class="subnav-li" data-id="16"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">登录日志</span></a></li>
-                    </ul>
+                <ul class="subnav" style="display: none">
+                <li class="subnav-li current" data-id="1"  href="index" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a></li>
+                </ul>
+                {{----}}
+                @foreach ($pidnot0 as $pidnot0_child)
+                    <?php $flag = 2; ?>
+                    <li class="nav-li">
+                        <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">{{$pidnot0_child['name']}}</span></a>
+                        <ul class="subnav">
+                            @foreach ($permission as $permission_child)
+                                @if ($permission_child['pid'] == $pidnot0_child['id'])
+                            <?php
+                                $href = substr($permission_child['slug'],strpos($permission_child['slug'],'.')+1);
+                                ?>
+                            <li class="subnav-li" data-id="<?=$flag?>"  href="<?=$href?>" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">{{$permission_child['name']}}</span></a></li>
+                                @endif
+                                    <?php $flag++; ?>
+                            @endforeach
+                        </ul>
                     </li>
-                <li class="nav-li last-nav-li">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">广告管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li" data-id="17"><a href="advertsshow" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">广告列表</span></a></li>
-                        <li class="subnav-li" data-id="18"><a href="advertsadd" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加广告</span></a></li>
-                        <li class="subnav-li" data-id="19"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">轮播图管理</span></a></li>
-                    </ul>
-                </li>
-                <li class="nav-li last-nav-li">
-                    <a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">课程管理</span></a>
-                    <ul class="subnav">
-                        <li class="subnav-li" data-id="17"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">广告列表</span></a></li>
-                        <li class="subnav-li" data-id="18"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加广告</span></a></li>
-                        <li class="subnav-li" data-id="19"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">轮播图管理</span></a></li>
-                    </ul>
-                </li>
+                @endforeach
+
+                {{----}}
+                 {{--<li class="nav-li current">--}}
+                    {{--<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">用户信息管理</span></a>--}}
+                    {{--<ul class="subnav">--}}
+                        {{--<li class="subnav-li current" data-id="1"  href="index" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">首页</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="2" href="form" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表单</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="3" href="table" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">表格</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="4" href="information" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">编写个人信息</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="5" href="informationshow" ><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">我的个人信息</span></a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li class="nav-li">--}}
+                    {{--<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">培训机构管理</span></a>--}}
+                    {{--<ul class="subnav">--}}
+                        {{--<li class="subnav-li" data-id="20" href="arganceshi" ><a href="#" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">机构管理</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="7" href="teacheradd"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">讲师管理</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="8" href="studentadd"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">学生管理</span></a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                 {{--<li class="nav-li last-nav-li">--}}
+                    {{--<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">在线课程管理</span></a>--}}
+                    {{--<ul class="subnav">--}}
+                        {{--<li class="subnav-li" data-id="14" href="class-list"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">课程列表</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="15"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">缓存清理</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="16"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">登录日志</span></a></li>--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
+                {{--<li class="nav-li last-nav-li">--}}
+                    {{--<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">广告管理</span></a>--}}
+                    {{--<ul class="subnav">--}}
+                        {{--<li class="subnav-li" data-id="17"><a href="advertsshow" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">广告列表</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="18"><a href="advertsadd" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加广告</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="19"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">轮播图管理</span></a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li class="nav-li last-nav-li">--}}
+                    {{--<a href="javascript:;" class="ue-clear"><i class="nav-ivon"></i><span class="nav-text">课程管理</span></a>--}}
+                    {{--<ul class="subnav">--}}
+                        {{--<li class="subnav-li" data-id="17"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">广告列表</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="18"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">添加广告</span></a></li>--}}
+                        {{--<li class="subnav-li" data-id="19"><a href="javascript:;" class="ue-clear"><i class="subnav-icon"></i><span class="subnav-text">轮播图管理</span></a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
             </ul>
             <div class="tree-list outwindow">
                 <div class="tree ztree"></div>

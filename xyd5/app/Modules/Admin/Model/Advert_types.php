@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class Advert_types extends Model{
     public $table = 'advert_types';
     public function advert_types(){
-        $data = $this->all(['id','name'])->toArray();
+        $data = $this->all(['id','advert_type_name'])->toArray();
         return $data;
     }
 }
